@@ -30,7 +30,7 @@ public class RSSAdapter extends BaseAdapter {
     }
 
     public void setItems(Collection<RSSItem> items) {
-        this.items = new ArrayList<>(items);
+        this.items = new ArrayList<RSSItem>(items);
         notifyDataSetChanged();
 
     }
@@ -47,7 +47,7 @@ public class RSSAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public RSSItem getItem(int position) {
         return items.get(position);
     }
 

@@ -20,7 +20,6 @@ public class DescriptionActivity extends Activity {
         webView.loadData(message, "text/html", ENCODING_CHARSET);
 
 
-        setContentView(webView);
 
 
     }
