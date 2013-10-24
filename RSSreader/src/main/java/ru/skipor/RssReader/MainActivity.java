@@ -1,7 +1,13 @@
 package ru.skipor.RssReader;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import java.util.List;
@@ -18,10 +24,11 @@ public class MainActivity extends Activity {
     public static final String TAG = "MainActivity";
 
     private static String RssFeed = "http://www.thetimes.co.uk/tto/news/rss";
+//private static String RssFeed = "http://bash.im/rss/";
+
 
     private String XMLoutput;
 
-    //    TextView testTextView;
     private RSSFeedReader feedReader;
     private ListView listView;
 
@@ -32,7 +39,6 @@ public class MainActivity extends Activity {
         listView = (ListView) findViewById(R.id.listView);
 
 
-//        testTextView = (TextView) findViewById(R.id.testTextView);
 
         try {
             feedReader = new DOMRSSReader(RssFeed);
@@ -41,27 +47,29 @@ public class MainActivity extends Activity {
             RSSAdapter rssAdapter = new RSSAdapter(this);
             rssAdapter.setItems(rssItems);
             listView.setAdapter(rssAdapter);
+            final Context context = this;
 
-//            StringBuilder stringBuilder = new StringBuilder();
-//            for (RSSItem item : rssItems) {
-//                stringBuilder.append(item.toString());
-//            }
-////            testTextView.setText(stringBuilder.toString());
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    RSSAdapter rssAdapter = (RSSAdapter) listView.getAdapter();
+                    RSSItem item = rssAdapter.getItem(position);
+                    Intent intent = new Intent(context, DescriptionActivity.class);
+                    intent.putExtra(DescriptionActivity.EXTRA_MESSAGE, item.getDescription());
+                    startActivity(intent);
+                }
+            });
+
+
 
         } catch (RSSFeedReaderException e) {
-            e.printStackTrace();
+            Log.e(TAG, "RSSFeedReaderException", e);
         }
 
 
-//        DownloadWebpageTask task = new DownloadWebpageTask();
-//        task.execute(RssFeed);
-//        try {
-//            testTextView.setText(task.get());
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
 
 
     }
