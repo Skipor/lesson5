@@ -1,6 +1,7 @@
 package ru.skipor.RssReader.UserInterface;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import ru.skipor.RssReader.R;
+import ru.skipor.RssReader.RSSFeedReader.DOMRSSReader;
+import ru.skipor.RssReader.RSSFeedReader.RSSFeedReader;
+import ru.skipor.RssReader.RSSFeedReader.RSSFeedReaderException;
 import ru.skipor.RssReader.RSSFeedReader.RSSItem;
 
 /**
@@ -22,9 +26,18 @@ public class RSSAdapter extends BaseAdapter {
     private static final String TAG = "RSSAdapter";
     public final Context context;
     private ArrayList<RSSItem> items;
+    private RSSFeedReader feedReader;
 
-    public RSSAdapter(Context context) {
+    public RSSAdapter(Context context, String feedUrl) {
+        try {
+            feedReader = new DOMRSSReader(feedUrl);
+
+        } catch (RSSFeedReaderException e) {
+            e.printStackTrace();
+        }
         this.context = context;
+        items = new ArrayList<RSSItem>();
+
         Log.d(TAG, "RSSAdapter created");
 
     }
@@ -40,6 +53,32 @@ public class RSSAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void showContent() {
+        ShowContentTask showContentTask = new ShowContentTask();
+        showContentTask.execute();
+
+    }
+
+    private class ShowContentTask extends AsyncTask<Void, Void, ArrayList<RSSItem>> {
+
+        @Override
+        protected ArrayList<RSSItem> doInBackground(Void... params) {
+            try {
+                ArrayList<RSSItem> taskItems = new ArrayList<RSSItem>(feedReader.parse());
+                return taskItems;
+            } catch (RSSFeedReaderException e) {
+                Log.e(TAG, "load and parse error", e);
+            }
+            return null;
+
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<RSSItem> taskItems) {
+            setItems(taskItems);
+
+        }
+    }
 
     @Override
     public int getCount() {

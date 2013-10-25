@@ -1,7 +1,11 @@
 package ru.skipor.RssReader.RSSFeedReader;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
@@ -34,14 +38,49 @@ public abstract class BaseRSSFeedReader implements RSSFeedReader {
     protected InputStream getInputStream() throws RSSFeedReaderException {
 
         try {
-            DownloadWebpageTask task = new DownloadWebpageTask();
-            task.execute(feedUrl);
-            String feedString = task.get();
+
+            String feedString = downloadUrl(feedUrl);
             return new ByteArrayInputStream(feedString.getBytes());
-        } catch (InterruptedException e) {
-            throw new RSSFeedReaderException(e);
-        } catch (ExecutionException e) {
+
+        } catch (IOException e) {
             throw new RSSFeedReaderException(e);
         }
+    }
+
+
+    private String downloadUrl(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setReadTimeout(10000);
+        conn.setConnectTimeout(15000);
+        conn.setRequestMethod("GET");
+        conn.setDoInput(true);
+        conn.connect();
+
+        InputStream inputStream = null;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            inputStream = conn.getInputStream();
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String resultString = bufferedReader.readLine();
+
+
+            while (resultString != null) {
+                stringBuilder.append(resultString);
+                resultString = bufferedReader.readLine();
+            }
+
+
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+
+        }
+
+        return stringBuilder.toString();
+
     }
 }
