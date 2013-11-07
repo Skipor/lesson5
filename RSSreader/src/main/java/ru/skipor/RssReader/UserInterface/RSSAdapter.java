@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import ru.skipor.RssReader.R;
-import ru.skipor.RssReader.RSSFeedReader.DOMRSSReader;
 import ru.skipor.RssReader.RSSFeedReader.RSSFeedReader;
 import ru.skipor.RssReader.RSSFeedReader.RSSFeedReaderException;
 import ru.skipor.RssReader.RSSFeedReader.RSSItem;
+import ru.skipor.RssReader.RSSFeedReader.SAXRSSReader;
 
 /**
  * Created by Vladimir Skipor on 10/24/13.
@@ -29,12 +29,8 @@ public class RSSAdapter extends BaseAdapter {
     private RSSFeedReader feedReader;
 
     public RSSAdapter(Context context, String feedUrl) {
-        try {
-            feedReader = new DOMRSSReader(feedUrl);
+        feedReader = new SAXRSSReader(feedUrl);
 
-        } catch (RSSFeedReaderException e) {
-            e.printStackTrace();
-        }
         this.context = context;
         items = new ArrayList<RSSItem>();
 

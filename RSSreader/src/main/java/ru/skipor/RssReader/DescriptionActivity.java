@@ -3,11 +3,11 @@ package ru.skipor.RssReader;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.webkit.WebView;
 
 public class DescriptionActivity extends Activity {
     public static final String EXTRA_MESSAGE = "ru.skipor.RssReader.DescriptionActivity";
-    public static final String ENCODING_CHARSET = "UTF-8";
     private WebView webView;
 
     @Override
@@ -17,7 +17,8 @@ public class DescriptionActivity extends Activity {
         webView = (WebView) findViewById(R.id.item_description);
         Intent intent = getIntent();
         String message = intent.getStringExtra(EXTRA_MESSAGE);
-        webView.loadData(message, "text/html", ENCODING_CHARSET);
+        webView.loadData(message, "text/html; charset=utf-8", null);
+
 
 
 
@@ -25,13 +26,13 @@ public class DescriptionActivity extends Activity {
     }
 
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.description, menu);
-//        return true;
-//    }
-//
-//
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.description, menu);
+        return true;
+    }
+
+
 }

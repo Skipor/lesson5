@@ -12,9 +12,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb572fcd-647f-49a3-a64f-5b4b502c2055" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/BaseRSSFeedReader.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/BaseRSSFeedReader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeed.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/SAXRSSReader.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/BaseRSSFeedReader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/DOMRSSReader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/DownloadWebpageTask.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/DescriptionActivity.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/DescriptionActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/MainActivity.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/UserInterface/RSSAdapter.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/UserInterface/RSSAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSItem.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSItem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lesson5.iws" />
@@ -79,13 +85,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="rss_item_layout.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/layout/rss_item_layout.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
+      <file leaf-file-name="SAXRSSReader.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/SAXRSSReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="9" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="360">
+            <state line="191" column="22" selection-start="6128" selection-end="6128" vertical-scroll-proportion="0.5597484" vertical-offset="2133" max-vertical-offset="2610">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RSSFeed.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeed.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="0" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
               <folding />
             </state>
           </provider>
@@ -94,25 +106,39 @@
       <file leaf-file-name="DescriptionActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/DescriptionActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="56" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="645">
+            <state line="19" column="8" selection-start="689" selection-end="749" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RSSAdapter.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="RSSItem.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="11" selection-start="1686" selection-end="1886" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1695">
+              <folding>
+                <element signature="e#1520#1521#0" expanded="true" />
+                <element signature="e#1553#1554#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RSSAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/UserInterface/RSSAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="11" selection-start="912" selection-end="912" vertical-scroll-proportion="0.27061856" vertical-offset="0" max-vertical-offset="1515">
-              <folding />
+            <state line="62" column="0" selection-start="1711" selection-end="1711" vertical-scroll-proportion="0.0" vertical-offset="927" max-vertical-offset="1455">
+              <folding>
+                <element signature="e#1771#1780#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseRSSFeedReader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/BaseRSSFeedReader.java">
+      <file leaf-file-name="RSSFeedReader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeedReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="0" selection-start="1259" selection-end="1259" vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="1365">
+            <state line="9" column="18" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
               <folding />
             </state>
           </provider>
@@ -121,28 +147,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="39" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="885">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArrayList.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../android-sdk-macosx/sources/android-18/java/util/ArrayList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="0" selection-start="3461" selection-end="3461" vertical-scroll-proportion="0.0" vertical-offset="1380" max-vertical-offset="10050">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_description.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/layout/activity_description.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="4" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="390">
+            <state line="21" column="79" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="870">
               <folding />
             </state>
           </provider>
@@ -169,11 +174,16 @@
         <option value="$PROJECT_DIR$/RSSreader/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/RSSreader/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/RSSreader/src/main/res/layout/rss_item_layout.xml" />
-        <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/DescriptionActivity.java" />
         <option value="$PROJECT_DIR$/RSSreader/src/main/res/layout/activity_description.xml" />
+        <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeedReader.java" />
         <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/BaseRSSFeedReader.java" />
+        <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/FeedFormats.java" />
         <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/UserInterface/RSSAdapter.java" />
+        <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSItem.java" />
+        <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/DescriptionActivity.java" />
         <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/MainActivity.java" />
+        <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeed.java" />
+        <option value="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/SAXRSSReader.java" />
       </list>
     </option>
   </component>
@@ -188,7 +198,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -207,7 +217,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -320,9 +329,36 @@
               <option name="myItemId" value="RSSFeedReader" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SAXRSSReader.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lesson5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RssReader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSSFeedReader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -538,8 +574,32 @@
       <created>1382693414587</created>
       <updated>1382693414587</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Working lesson 5">
+      <created>1383762563327</created>
+      <updated>1383762563327</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -549,14 +609,15 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917705" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3084577" sideWeight="0.35007173" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3084577" sideWeight="0.6499283" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32793018" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30673316" sideWeight="0.6499283" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917705" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -567,8 +628,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917705" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -582,129 +642,105 @@
     <MESSAGE value="First pard done" />
     <MESSAGE value="Chanell changed" />
     <MESSAGE value="AsyncTask.get fixed. Now rssAdapter upload feed in AsyncTask and show it." />
-    <option name="LAST_COMMIT_MESSAGE" value="AsyncTask.get fixed. Now rssAdapter upload feed in AsyncTask and show it." />
+    <MESSAGE value="Working lesson 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working lesson 5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/layout/rss_item_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="41" selection-start="527" selection-end="527" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="360">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="47" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="195">
-          <folding />
-        </state>
+        <state line="5" column="47" selection-start="228" selection-end="228" vertical-scroll-proportion="0.14258555" vertical-offset="0" max-vertical-offset="526" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="31" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="195">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../android-sdk-macosx/sources/android-18/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1900" column="0" selection-start="84029" selection-end="84029" vertical-scroll-proportion="0.33269963" vertical-offset="26840" max-vertical-offset="78300">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="47" selection-start="228" selection-end="228" vertical-scroll-proportion="0.14258555" vertical-offset="0" max-vertical-offset="526">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="31" selection-start="229" selection-end="229" vertical-scroll-proportion="0.11406844" vertical-offset="0" max-vertical-offset="526">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/layout/rss_item_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="9" selection-start="553" selection-end="553" vertical-scroll-proportion="-0.0" vertical-offset="225" max-vertical-offset="360">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeedReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="17" selection-start="171" selection-end="171" vertical-scroll-proportion="0.23529412" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/DownloadWebpageTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="5" selection-start="822" selection-end="1835" vertical-scroll-proportion="0.9117647" vertical-offset="420" max-vertical-offset="990">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/DOMRSSReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="516" selection-end="516" vertical-scroll-proportion="0.14705883" vertical-offset="60" max-vertical-offset="975">
-          <folding />
-        </state>
+        <state line="4" column="31" selection-start="229" selection-end="229" vertical-scroll-proportion="0.11406844" vertical-offset="0" max-vertical-offset="526" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../android-sdk-macosx/sources/android-18/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="0" selection-start="3461" selection-end="3461" vertical-scroll-proportion="0.0" vertical-offset="890" max-vertical-offset="9735">
+        <state line="92" column="0" selection-start="3461" selection-end="3461" vertical-scroll-proportion="0.0" vertical-offset="890" max-vertical-offset="9735" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/layout/activity_description.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="4" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="390">
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/BaseRSSFeedReader.java">
+    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/layout/rss_item_layout.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="0" selection-start="1259" selection-end="1259" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1245">
+        <state line="15" column="9" selection-start="553" selection-end="553" vertical-scroll-proportion="0.30040053" vertical-offset="0" max-vertical-offset="749">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeedReaderException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="143" selection-end="143" vertical-scroll-proportion="0.11597938" vertical-offset="0" max-vertical-offset="776">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/DescriptionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="56" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+        <state line="19" column="8" selection-start="689" selection-end="749" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/res/layout/activity_description.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeedReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="4" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="390">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="39" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="885">
+        <state line="9" column="18" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/UserInterface/RSSAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="11" selection-start="912" selection-end="912" vertical-scroll-proportion="0.27061856" vertical-offset="0" max-vertical-offset="1515">
+        <state line="62" column="0" selection-start="1711" selection-end="1711" vertical-scroll-proportion="0.0" vertical-offset="927" max-vertical-offset="1455">
+          <folding>
+            <element signature="e#1771#1780#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="79" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="870">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="11" selection-start="1686" selection-end="1886" vertical-scroll-proportion="0.0" vertical-offset="619" max-vertical-offset="1695">
+          <folding>
+            <element signature="e#1520#1521#0" expanded="true" />
+            <element signature="e#1553#1554#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/SAXRSSReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="191" column="22" selection-start="6128" selection-end="6128" vertical-scroll-proportion="0.5597484" vertical-offset="2133" max-vertical-offset="2610">
           <folding />
         </state>
       </provider>

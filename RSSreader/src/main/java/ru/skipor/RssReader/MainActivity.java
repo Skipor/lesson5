@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,28 +19,27 @@ public class MainActivity extends Activity {
 
 
 
+    private static String RssFeed = "http://stackoverflow.com/feeds/tag/android";
 //    private static String RssFeed = "http://lenta.ru/rss/articles";
-    private static String RssFeed = "http://www.thetimes.co.uk/tto/news/rss";
+//    private static String RssFeed = "http://www.thetimes.co.uk/tto/news/rss";
 //private static String RssFeed = "http://bash.im/rss/";
 
 
     private String XMLoutput;
 
-    //    private RSSFeedReader feedReader;
     private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.listView);
 
 
-//            feedReader = new DOMRSSReader(RssFeed);
-//            List<RSSItem> rssItems = feedReader.parse();
+
 
         RSSAdapter rssAdapter = new RSSAdapter(this, RssFeed);
-//            rssAdapter.setItems(rssItems);
         listView.setAdapter(rssAdapter);
 
         rssAdapter.showContent();
