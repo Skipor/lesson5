@@ -60,7 +60,7 @@ public class RSSAdapter extends BaseAdapter {
         @Override
         protected ArrayList<RSSItem> doInBackground(Void... params) {
             try {
-                ArrayList<RSSItem> taskItems = new ArrayList<RSSItem>(feedReader.parse());
+                ArrayList<RSSItem> taskItems = new ArrayList<RSSItem>(feedReader.parse().getItemList());
                 return taskItems;
             } catch (RSSFeedReaderException e) {
                 Log.e(TAG, "load and parse error", e);
