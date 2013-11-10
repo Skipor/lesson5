@@ -29,12 +29,13 @@ public class RSSAdapter extends BaseAdapter {
     private RSSFeedReader feedReader;
 
     public RSSAdapter(Context context, String feedUrl) {
-        feedReader = new SAXRSSReader(feedUrl);
+        feedReader = new SAXRSSReader();
 
         this.context = context;
         items = new ArrayList<RSSItem>();
 
         Log.d(TAG, "RSSAdapter created");
+        showContent(feedUrl);
 
     }
 
@@ -49,19 +50,19 @@ public class RSSAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void showContent() {
+    public void showContent(String feedURL) {
         ShowContentTask showContentTask = new ShowContentTask();
-        showContentTask.execute();
+        showContentTask.execute(feedURL);
 
     }
 
-    private class ShowContentTask extends AsyncTask<Void, Void, ArrayList<RSSItem>> {
+    private class ShowContentTask extends AsyncTask<String, Void, ArrayList<RSSItem>> {
 
         @Override
-        protected ArrayList<RSSItem> doInBackground(Void... params) {
+        protected ArrayList<RSSItem> doInBackground(String... params) {
+            String feedURL = params[0];
             try {
-                ArrayList<RSSItem> taskItems = new ArrayList<RSSItem>(feedReader.parse().getItemList());
-                return taskItems;
+                return new ArrayList<RSSItem>(feedReader.parse(feedURL).getItemList());
             } catch (RSSFeedReaderException e) {
                 Log.e(TAG, "load and parse error", e);
             }

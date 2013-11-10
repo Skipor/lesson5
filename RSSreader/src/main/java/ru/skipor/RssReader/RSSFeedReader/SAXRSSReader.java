@@ -16,92 +16,71 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+import java.util.Set;
 
 
 public class SAXRSSReader implements RSSFeedReader {
-    public static final String CHARSET_REGEX = "encoding=\"(?+)\"";
     public static final String TAG = "SAXRSSReader";
-    private String feedURL;
 
-    public SAXRSSReader(String feedURL) {
-        this.feedURL = feedURL;
+    public SAXRSSReader() {
     }
 
 
     @Override
-    public List<RSSItem> parse() throws RSSFeedReaderException {
+    public RSSFeed parse(String feedURL) throws RSSFeedReaderException {
         HttpClient httpclient = new DefaultHttpClient();
 
         HttpGet httpget = new HttpGet(feedURL);
         HttpResponse response;
-        List<RSSItem> rssItems = null;
-        
+        RSSFeed rssFeed = null;
         try {
             response = httpclient.execute(httpget);
             Log.i(TAG, "Connection status: " + response.getStatusLine().toString());
 
 
             HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                String xml = EntityUtils.toString(entity);
+            String xml = EntityUtils.toString(entity);
 //                String xml = EntityUtils.toString(entity, "utf-8");
-                Log.d(TAG, "Encoding can be founded:" + getEncondingFromEntity(entity));
-                RSSHandler rssHandler = new RSSHandler();
-                Xml.parse(xml, rssHandler);
-                rssItems = rssHandler.getItemList();
-            } else {
+            Log.d(TAG, "Encoding can be founded:" + getEncodingFromEntity(entity));
+            RSSHandler rssHandler = new RSSHandler();
+            Xml.parse(xml, rssHandler);
 
-                throw new RSSFeedReaderException("Null Entity in response");
-            }
-
-
+            rssFeed = rssHandler.getRssFeed();
         } catch (SAXException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Error", e);
+            throw new RSSFeedReaderException(e);
         } catch (ClientProtocolException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Error", e);
+            throw new RSSFeedReaderException(e);
+
+
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Error", e);
+            throw new RSSFeedReaderException(e);
+
         }
 
-        return rssItems;
+
+        return rssFeed;
     }
 
 
-//    private String getEncodingCharset(String feedDump) throws IOException {
-//        BufferedReader bufferedReader = new BufferedReader(new StringReader(feedDump));
-//        String firstLine = bufferedReader.readLine();
-//        Matcher charsetMatcher = Pattern.compile()
-//
-//
-//    }
-
-
-    private String getEncondingFromEntity(HttpEntity entity){
-        if(entity.getContentType()!=null){
+    private String getEncodingFromEntity(HttpEntity entity) {
+        if (entity.getContentType() != null) {
             //Content-Type: text/xml; charset=ISO-8859-1
             //Content-Type: text/xml; charset=UTF-8
-            for(String str : entity.getContentType().getValue().split(";")){
-                if(str.toLowerCase().contains("charset")){
-                    return str.toLowerCase().replace("charset=","").replace(";","").replace(" ","");
+            for (String str : entity.getContentType().getValue().split(";")) {
+                if (str.toLowerCase().contains("charset")) {
+                    return str.toLowerCase().replace("charset=", "").replace(";", "").replace(" ", "");
                 }
             }
         }
@@ -112,17 +91,48 @@ public class SAXRSSReader implements RSSFeedReader {
 }
 
 class RSSHandler extends DefaultHandler {
+
+
+    private static Set<String> itemTags, titleTags, linkTags, descriptionTags, dateTags, feedTags;
+    private static String rssHeadTag = "rss";
+    private static String atomHeadTag = "feed";
+
+    static {
+        String[]
+                items = {"item", "entry"},
+                titles = {"title"},
+                links = {"link"},
+                descriptions = {"summary", "description", "content"},
+                dates = {"pubDate", "published"},
+                feeds = {"feed", "channel"};
+
+        itemTags = new HashSet<String>(Arrays.asList(items));
+        titleTags = new HashSet<String>(Arrays.asList(titles));
+        linkTags = new HashSet<String>(Arrays.asList(links));
+        descriptionTags = new HashSet<String>(Arrays.asList(descriptions));
+        dateTags = new HashSet<String>(Arrays.asList(dates));
+        feedTags = new HashSet<String>(Arrays.asList(feeds));
+
+
+    }
+
+
     public static final String TAG = "RSSHandler";
-    private String channel = null;
-    private boolean channelOn = false;
     private StringBuilder elementValueBuilder;
-    private Boolean elementOn = false;
     private RSSItem rssItem = new RSSItem();
+    private RSSFeed rssFeed = new RSSFeed();
+    private List<RSSItem> itemList = rssFeed.getItemList();
 
-    private List<RSSItem> itemList = new ArrayList<RSSItem>();
 
-    public List<RSSItem> getItemList() {
-        return itemList;
+    final SimpleDateFormat dateFormatRSS2 = RSSItem.DATE_FORMAT;
+    final SimpleDateFormat dateFormatAtom = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    SimpleDateFormat dateFormat;
+    private boolean headTagFlag = true;
+    private boolean channelOn = false;
+
+
+    public RSSFeed getRssFeed() {
+        return rssFeed;
     }
 
     /**
@@ -130,18 +140,33 @@ class RSSHandler extends DefaultHandler {
      */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        elementOn = true;
         elementValueBuilder = new StringBuilder();
 
-        if (RSSItem.feedTags.contains(localName)) {
+        if (headTagFlag) {
+            headTagFlag = false;
+            if (localName.equals(rssHeadTag)) {
+                dateFormat = dateFormatRSS2;
+
+            } else if (localName.equals(atomHeadTag)) {
+                dateFormat = dateFormatAtom;
+
+            } else {
+                throw new SAXException("Unsupported feed format.");
+            }
+
+        }
+
+        if (feedTags.contains(localName)) {
             channelOn = true;
         }
 
-        if (RSSItem.itemTags.contains(localName)) {
+        if (itemTags.contains(localName)) {
+            channelOn = false;
             rssItem = new RSSItem();
         }
 
-        Log.d(TAG, localName + " tag is opened");
+//        Log.d(TAG, localName + " tag is opened");
+
 
     }
 
@@ -150,35 +175,43 @@ class RSSHandler extends DefaultHandler {
      */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        elementOn = false;
         /**
          * Sets the values after retrieving the values from the XML tags
          * */
         Log.d(TAG, localName + " tag is closed with value " + elementValueBuilder.toString());
+        if (channelOn) {
 
-
-         if (RSSItem.itemTags.contains(localName)) {
-            itemList.add(rssItem);
-            Log.d(TAG, "Item " + rssItem.toString() + " added");
-        } else if (RSSItem.titleTags.contains(localName)) {
-            if (channelOn) {
-                channelOn = false;
-                channel = elementValueBuilder.toString();
-                rssItem = new RSSItem(); /// chanel fields are in current rssItem
-
-                Log.d("TAG", "Channel name is: " + channel);
-            } else {
-                rssItem.setTitle(elementValueBuilder.toString());
+            if (titleTags.contains(localName)) {
+                rssFeed.setTitle(elementValueBuilder.toString());
+            } else if (descriptionTags.contains(localName)) {
+                rssFeed.setDescription(elementValueBuilder.toString());
+            } else if (linkTags.contains(localName)) {
+                rssFeed.setLink(elementValueBuilder.toString());
             }
-        } else if (RSSItem.descriptionTags.contains(localName)) {
-            rssItem.setDescription(elementValueBuilder.toString());
-        } else if (RSSItem.linkTags.contains(localName)) {
-            rssItem.setLink(elementValueBuilder.toString());
-        } else if (RSSItem.dateTags.contains(localName)) {
-            rssItem.setDate(elementValueBuilder.toString());
+
         } else {
-            Log.d(TAG, "tag " + localName + " skiped");
+            if (itemTags.contains(localName)) {
+                itemList.add(rssItem);
+//                Log.d(TAG, "Item " + rssItem.toString() + " added");
+            } else if (titleTags.contains(localName)) {
+                rssItem.setTitle(elementValueBuilder.toString());
+            } else if (descriptionTags.contains(localName)) {
+                rssItem.setDescription(elementValueBuilder.toString());
+            } else if (linkTags.contains(localName)) {
+                rssItem.setLink(elementValueBuilder.toString());
+            } else if (dateTags.contains(localName)) {
+                try {
+                    dateFormat.parse(elementValueBuilder.toString().trim());
+                } catch (ParseException e) {
+                    Log.e(TAG, "Invalid date format: " + elementValueBuilder.toString(), e);
+                    throw new SAXException("Invalid date format: " + elementValueBuilder.toString(), e);
+                }
+            } else {
+//                Log.d(TAG, "tag " + localName + " skipped");
+            }
+
         }
+
 
     }
 
@@ -187,13 +220,8 @@ class RSSHandler extends DefaultHandler {
      */
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-        if (elementOn) {
-            elementValueBuilder.append(ch, start, length);
-            elementOn = false;
-        }
+        elementValueBuilder.append(ch, start, length);
     }
-
-
 
 
 }

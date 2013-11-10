@@ -7,5 +7,5 @@ import java.util.List;
  * Email: vladimirskipor@gmail.com
  */
 public interface RSSFeedReader {
-    List<RSSItem> parse() throws RSSFeedReaderException;
+    RSSFeed parse(String feedURL) throws RSSFeedReaderException;
 }

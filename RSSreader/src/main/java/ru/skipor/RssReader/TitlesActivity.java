@@ -26,7 +26,6 @@ public class TitlesActivity extends Activity {
 ////private static String RssFeed = "http://bash.im/rss/";
 
 
-    private String XMLoutput;
 
     private ListView listView;
 
@@ -45,7 +44,6 @@ public class TitlesActivity extends Activity {
         RSSAdapter rssAdapter = new RSSAdapter(this, rssFeed);
         listView.setAdapter(rssAdapter);
 
-        rssAdapter.showContent();
 
         final Context context = this;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
