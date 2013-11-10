@@ -15,15 +15,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb572fcd-647f-49a3-a64f-5b4b502c2055" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSUpdateService.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/main.apk" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/RSSreader/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/FeedActivity.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/FeedActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/UserInterface/RSSAdapter.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/UserInterface/RSSAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeedReader.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/RSSFeedReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/SAXRSSReader.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/RSSFeedReader/SAXRSSReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/TitlesActivity.java" afterPath="$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/TitlesActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RSSreader/src/main/main.iml" afterPath="$PROJECT_DIR$/RSSreader/src/main/main.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lesson5.iws" />
@@ -129,7 +120,7 @@
       <file leaf-file-name="RSSAdapter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/UserInterface/RSSAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="46" selection-start="2839" selection-end="2839" vertical-scroll-proportion="0.6477495" vertical-offset="959" max-vertical-offset="1470">
+            <state line="102" column="46" selection-start="2839" selection-end="2839" vertical-scroll-proportion="2.5244617" vertical-offset="0" max-vertical-offset="1470">
               <folding />
             </state>
           </provider>
@@ -582,7 +573,11 @@
       <created>1384005589745</created>
       <updated>1384005589745</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Lesson 6 complete">
+      <created>1384088284841</created>
+      <updated>1384088284841</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -843,7 +838,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RSSreader/src/main/java/ru/skipor/RssReader/UserInterface/RSSAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="46" selection-start="2839" selection-end="2839" vertical-scroll-proportion="0.6477495" vertical-offset="959" max-vertical-offset="1470">
+        <state line="102" column="46" selection-start="2839" selection-end="2839" vertical-scroll-proportion="2.5244617" vertical-offset="0" max-vertical-offset="1470">
           <folding />
         </state>
       </provider>
