@@ -31,8 +31,10 @@
             </intent-filter>
         </activity>
 
+    <activity android:name=".FeedEdit" />
 
-        <service android:name="ru.skipor.RssReader.RSSUpdateService" />
+
+    <service android:name="ru.skipor.RssReader.RSSUpdateService" />
 
     </application>
 

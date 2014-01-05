@@ -56,15 +56,15 @@ public class SAXRSSReader implements RSSFeedReader {
 
             rssFeed = rssHandler.getRssFeed();
         } catch (SAXException e) {
-            Log.e(TAG, "Error", e);
+            Log.e(TAG, "Error - SAXException", e);
             throw new RSSFeedReaderException(e);
         } catch (ClientProtocolException e) {
-            Log.e(TAG, "Error", e);
+            Log.e(TAG, "Error - ClientProtocolException", e);
             throw new RSSFeedReaderException(e);
 
 
         } catch (IOException e) {
-            Log.e(TAG, "Error", e);
+            Log.e(TAG, "Error - IOException", e);
             throw new RSSFeedReaderException(e);
 
         }
@@ -178,7 +178,7 @@ class RSSHandler extends DefaultHandler {
         /**
          * Sets the values after retrieving the values from the XML tags
          * */
-        Log.d(TAG, localName + " tag is closed with value " + elementValueBuilder.toString());
+//        Log.d(TAG, localName + " tag is closed with value " + elementValueBuilder.toString());
         if (channelOn) {
 
             if (titleTags.contains(localName)) {
