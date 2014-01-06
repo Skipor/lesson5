@@ -10,8 +10,13 @@
     <string name="name">Name</string>
     <string name="url">URL</string>
     <string name="confirm">Confirm</string>
-    <string name="edit_feed">Edit Feed</string>
+    <string name="edit_feed">Edit</string>
     <string name="title_activity_description">change this label</string>
     <string name="menu_edit">Edit feed</string>
     <string name="default_url">http://</string>
+    <string name="feeds_title">Feed list</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_add">Add</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_refresh_all">Refresh all</string>
 </resources>

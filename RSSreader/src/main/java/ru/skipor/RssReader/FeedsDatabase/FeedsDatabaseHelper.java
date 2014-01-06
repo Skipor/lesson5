@@ -110,21 +110,21 @@ public class FeedsDatabaseHelper {
         }
     }
 
-    private String getFeedTableName(String feedURL) {
+    synchronized  private String getFeedTableName(String feedURL) {
         return "[" + feedURL + "]"; // valid sqlite table name
     }
 
-    public void dropFeedTableIfExists(String feedURL) {
+    synchronized private void dropFeedTableIfExists(String feedURL) {
         myDatabase.execSQL("DROP TABLE IF EXISTS " + getFeedTableName(feedURL));
     }
 
-    public void dropFeedTableIfExists(long rowId) {
+    synchronized public void dropFeedTableIfExists(long rowId) {
         Cursor cursor = fetchFeed(rowId);
         dropFeedTableIfExists(cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME)));
 
     }
 
-    public void createOrRecreateFeedTable(String feedURL) {
+    synchronized public void createOrRecreateFeedTable(String feedURL) {
         dropFeedTableIfExists(feedURL);
         myDatabase.execSQL("create table " + getFeedTableName(feedURL) +
                 "(_id integer primary key autoincrement, "
@@ -221,7 +221,7 @@ public class FeedsDatabaseHelper {
         Cursor mCursor =
 
                 myDatabase.query(true, getFeedTableName(feedURL), new String[]{KEY_ROWID,
-                       FEED_KEY_TITLE, FEED_KEY_TITLE}, KEY_ROWID + "=" + rowId, null,
+                       FEED_KEY_TITLE, FEED_KEY_BODY}, KEY_ROWID + "=" + rowId, null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();

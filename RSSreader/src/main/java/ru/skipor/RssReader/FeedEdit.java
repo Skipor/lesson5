@@ -17,6 +17,9 @@ package ru.skipor.RssReader;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,7 +44,7 @@ public class FeedEdit extends Activity {
         mNameText = (EditText) findViewById(R.id.title);
         mUrlText = (EditText) findViewById(R.id.body);
 
-        Button confirmButton = (Button) findViewById(R.id.confirm);
+//        Button confirmButton = (Button) findViewById(R.id.confirm);
 
         mRowId = (savedInstanceState == null) ? null :
             (Long) savedInstanceState.getSerializable(FeedsDatabaseHelper.KEY_ROWID);
@@ -53,16 +56,36 @@ public class FeedEdit extends Activity {
 
 		populateFields();
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View view) {
-                setResult(RESULT_OK);
-                finish();
-            }
-
-        });
+//        confirmButton.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View view) {
+//                setResult(RESULT_OK);
+//                finish();
+//            }
+//
+//        });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.edit_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_confirm:
+                setResult(RESULT_OK);
+                finish();
+                return true;
+        }
+
+        return super.onMenuItemSelected(featureId, item);
+    }
     private void populateFields() {
         if (mRowId != null) {
             Cursor feed = mDatabaseHelper.fetchFeed(mRowId);

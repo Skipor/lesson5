@@ -3,8 +3,10 @@ package ru.skipor.RssReader;
 import android.app.IntentService;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.ResultReceiver;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,13 +28,15 @@ public class RSSUpdateService extends IntentService {
     public static final String ACTION_UPDATE_ONE = "Update one";
     public static final String EXTRA_FEED_URL = "Feed url";
     public static final String EXTRA_INFORM_ABOUT_UPDATE = "Inform about update";
+    public static final String EXTRA_RECEIVER = "Receiver";
+    public static final int RESULT_CODE_UPTODATE = 0xdeadbeaf;
     RSSFeedReader feedReader;
     FeedsDatabaseHelper myDatabaseHelper = FeedsDatabaseHelper.getInstance(this);
 
 
     Handler uiHandler = new Handler(Looper.getMainLooper());
 
-    private static final String UPDATE_MESSAGE = "Feeds are up to date";
+    private static final String UPDATE_MESSAGE = "All feeds are up to date";
 
 //    private static String[] feedsLinks = {"http://stackoverflow.com/feeds/tag/android", "http://lenta.ru/rss/articles", "http://bash.im/rss/"};
 //    private static RSSFeed[] feeds = new RSSFeed[feedsLinks.length];
@@ -69,6 +73,7 @@ public class RSSUpdateService extends IntentService {
 
         if (ACTION_UPDATE_ALL.equals(actionType)) {
             updateAll();
+            Log.i(TAG, "All feeds updated ");
             if (intent.getBooleanExtra(EXTRA_INFORM_ABOUT_UPDATE, false)) {
                 makeToast(UPDATE_MESSAGE);
 
@@ -78,6 +83,9 @@ public class RSSUpdateService extends IntentService {
 
             updateOne(intent.getStringExtra(EXTRA_FEED_URL));
             if (intent.getBooleanExtra(EXTRA_INFORM_ABOUT_UPDATE, false)) { // use resultReceiver
+                ResultReceiver resultReceiver = intent.getParcelableExtra(EXTRA_RECEIVER);
+                resultReceiver.send(RESULT_CODE_UPTODATE, Bundle.EMPTY);
+
 
             }
         }
@@ -110,16 +118,31 @@ public class RSSUpdateService extends IntentService {
     }
 
     private void updateOne(String feedURL) {
-        myDatabaseHelper.createOrRecreateFeedTable(feedURL);
         try {
             RSSFeed uptodateFeed = feedReader.parse(feedURL);
+            myDatabaseHelper.createOrRecreateFeedTable(feedURL);
             for(RSSItem item : uptodateFeed.getItemList()) {
                 myDatabaseHelper.createTitle(feedURL, item.getTitle(), item.getDescription());
             }
-            makeToast("Feed " + feedURL + " is up to date");
-        } catch (RSSFeedReaderException e) {
+//            makeToast("Feed " + feedURL + " is up to date");
+        } catch (Exception e) {
             Log.e(TAG, "Error " + feedURL, e);
-            myDatabaseHelper.createTitle(feedURL, "", "Sorry, can't get RSSfeed from " + feedURL + "\n Check URL, connection or try later ");
+            Cursor cursor = null;
+            try {
+                cursor = myDatabaseHelper.fetchAllTitles(feedURL);
+                if (cursor.getCount() == 0) {
+
+                    myDatabaseHelper.createTitle(feedURL, "Sorry, can't get RSSfeed from " + feedURL + "\n Check URL, connection or try later ", "Sorry, can't get RSSfeed from " + feedURL + "\n Check URL, connection or try later ");
+                }
+
+
+
+
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
         }
 
 
