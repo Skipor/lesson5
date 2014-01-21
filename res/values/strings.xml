@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Car wash</string>
+
+    <string name="menu_insert">Add</string>
+    <string name="menu_delete">Delete</string>
+    <string name="pizza_type_text">Pizza type:</string>
+    <string name="url">Phone number:</string>
+    <string name="confirm">Confirm</string>
+    <string name="edit_feed">Edit</string>
+    <string name="title_activity_description">change this label</string>
+    <string name="menu_edit">Edit</string>
+    <string name="action_add">Add</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="car_wash_desc">Name:</string>
+    <string name="box_num_desc">Courier count:</string>
+    <string name="defult_car_wash_name">Пицца вкусная</string>
+    <string name="default_box_number">3</string>
+    <string name="first_activity_title">Pizza</string>
+</resources>
